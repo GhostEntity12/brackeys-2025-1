@@ -3,14 +3,13 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-	[SerializeField] Image timerFront;
-	[SerializeField] Gradient colorRange;
-
-	public bool Active { get; private set; } = false;
-
-	private RectTransform rectTransform;
+	private bool active = false;
 	private float timerLength;
 	private float timeRemaining;
+	private RectTransform rectTransform;
+
+	[SerializeField] Image timerFront;
+	[SerializeField] Gradient colorRange;
 
 	private void Awake()
 	{
@@ -20,7 +19,7 @@ public class Timer : MonoBehaviour
 
 	private void Update()
 	{
-		if (!Active) return;
+		if (!active) return;
 
 		// Decrement time and update graphic
 		timeRemaining -= Time.deltaTime;
@@ -39,25 +38,23 @@ public class Timer : MonoBehaviour
 	public void Setup(float time, Transform location)
 	{
 		timerLength = time;
-		GameManager.Instance.RegisterTimer(this);
 		rectTransform.position = Camera.main.WorldToScreenPoint(location.position) + (Vector3.up * 10);
 	}
 
 	public void Trigger()
 	{
-		Active = true;
+		active = true;
 		timeRemaining = timerLength;
 		// Play appear animation
 	}
 
 	public void Pause()
 	{
-		Active = false;
+		active = false;
 	}
 
 	public void Finish()
 	{
-		Active = false;
 		// Play disappear animation
 	}
 }

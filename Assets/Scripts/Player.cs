@@ -3,14 +3,13 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] GameObject playerSpriteObject;
-
 	private NavMeshAgent playerAgent;
 	private SpriteRenderer playerSprite;
 	private Animator playerSpriteAnimator;
+	private StageEvent targetedStageEvent = null;
 	private bool canMove = true;
 
-	private StageEvent targetedStageEvent;
+	[SerializeField] GameObject playerSpriteObject;
 
 	void Awake()
 	{

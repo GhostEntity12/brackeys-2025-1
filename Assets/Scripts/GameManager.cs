@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-	[SerializeField] Vector2 spawnTimerRange = new(10, 12);
-	[SerializeField] Canvas eventCanvas;
-	
-	[field: SerializeField] public Timer TimerPrefab { get; private set; }
-
 	private float spawnTimerCountdown;
-	private readonly List<Timer> timerList = new();
+	private readonly List<StageEvent> StageEventList = new();
+
+	[SerializeField] private Vector2 spawnTimerRange = new(10, 12);
+
+	[field: SerializeField] public Canvas EventCanvas { get; private set; }
+	[field: SerializeField] public Timer TimerPrefab { get; private set; }
+	[field: SerializeField] public Player Player { get; private set; }
+
+	private void Start()
+	{
+		// Get all StageEvents in the scene
+		StageEventList.AddRange(FindObjectsByType<StageEvent>(FindObjectsSortMode.None));
+	}
 
 	void Update()
 	{
@@ -18,26 +25,20 @@ public class GameManager : Singleton<GameManager>
 
 		if (spawnTimerCountdown > 0) return;
 		spawnTimerCountdown = Random.Range(spawnTimerRange.x, spawnTimerRange.y);
-		if (GetInactiveTimer(out Timer timer))
+		if (GetInactiveEvent(out StageEvent stageEvent))
 		{
-			timer.Trigger();
+			stageEvent.Timer.Trigger();
 		}
 
 	}
 
-	private bool GetInactiveTimer(out Timer t)
+	private bool GetInactiveEvent(out StageEvent e)
 	{
-		t = null;
-		if (timerList.Count == 0) return false;
+		e = null;
 
-		List<Timer> inactiveTimers = timerList.Where(t => !t.Active).ToList();
-		t = inactiveTimers[Random.Range(0, inactiveTimers.Count)];
+		List<StageEvent> inactiveEvents = StageEventList.Where(t => !t.InProgress).ToList();
+		if (StageEventList.Count == 0 || inactiveEvents.Count == 0) return false;
+		e = inactiveEvents[Random.Range(0, inactiveEvents.Count)];
 		return true;
-	}
-
-	public void RegisterTimer(Timer t)
-	{
-		timerList.Add(t);
-		t.transform.SetParent(eventCanvas.transform);
 	}
 }
