@@ -3,14 +3,13 @@ using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-	[SerializeField] GameObject playerSpriteObject;
-
 	private NavMeshAgent playerAgent;
 	private SpriteRenderer playerSprite;
 	private Animator playerSpriteAnimator;
+	private StageEvent targetedStageEvent = null;
 	private bool canMove = true;
 
-	private StageEvent targetedStageEvent;
+	[SerializeField] GameObject playerSpriteObject;
 
 	void Awake()
 	{
@@ -36,15 +35,15 @@ public class Player : MonoBehaviour
 		// On click, if raycast hits raycastable
 		if (Input.GetMouseButtonDown(0) && Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hit, Mathf.Infinity, 1 << 6))
 		{
-			// Hit stage event
-			if (hit.transform.TryGetComponent(out StageEvent stageEvent))
+			// Hit active stage event
+			if (hit.transform.TryGetComponent(out StageEvent stageEvent) && stageEvent.Timer.Active)
 			{
 				// Walk to stage event
 				playerAgent.destination = stageEvent.InteractPosition;
 				targetedStageEvent = stageEvent;
 			}
 			// Hit floor
-			else if (NavMesh.SamplePosition(hit.point, out NavMeshHit nmHit, 2, -1))
+			else if (NavMesh.SamplePosition(hit.point, out NavMeshHit nmHit, 1, -1))
 			{
 				// Walk to click location
 				playerAgent.SetDestination(nmHit.position);
@@ -64,9 +63,11 @@ public class Player : MonoBehaviour
 		// Destination reached
 		playerAgent.ResetPath();
 
-		if (!targetedStageEvent) return;
-		// Destination is stageEvent
-		targetedStageEvent.Interact();
+		if (targetedStageEvent && !targetedStageEvent.Timer.Failed)
+		{
+			// Destination is stageEvent and not failed
+			targetedStageEvent.Interact();
+		}
 	}
 
 	void DoAnimation()
