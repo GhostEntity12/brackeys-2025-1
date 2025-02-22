@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TreeEditor;
 
-public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IResettable
 {
 	private Image sprite;
 	private Vector3 snapPosition;
@@ -66,7 +66,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 		sprite.raycastTarget = true;
 	}
 
-	public void ResetPosition()
+	public void ResetObject()
 	{
 		transform.localPosition = initialPosition;
 	}

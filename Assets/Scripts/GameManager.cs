@@ -17,6 +17,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		// Get all StageEvents in the scene
 		StageEventList.AddRange(FindObjectsByType<StageEvent>(FindObjectsSortMode.None));
+		Debug.Log(StageEventList.Count);
 	}
 
 	void Update()
@@ -29,14 +30,13 @@ public class GameManager : Singleton<GameManager>
 		{
 			stageEvent.Timer.Trigger();
 		}
-
 	}
 
 	private bool GetInactiveEvent(out StageEvent e)
 	{
 		e = null;
 
-		List<StageEvent> inactiveEvents = StageEventList.Where(t => !t.InProgress).ToList();
+		List<StageEvent> inactiveEvents = StageEventList.Where(t => !t.InProgress && !t.Timer.Active).ToList();
 		if (StageEventList.Count == 0 || inactiveEvents.Count == 0) return false;
 		e = inactiveEvents[Random.Range(0, inactiveEvents.Count)];
 		return true;

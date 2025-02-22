@@ -2,29 +2,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragTarget : MonoBehaviour, IDropHandler, IStageEventCondition
+public class DragTarget : MonoBehaviour, IDropHandler, IStageEventCondition, IResettable
 {
-	private bool complete = false;
 	private Draggable heldDraggable;
 
 	[SerializeField] List<string> acceptedIDs;
 
-	public bool Complete { get => complete; set => complete = value; }
-	
+	public bool Complete { get; set; } = false;
+
 	public void OnDrop(PointerEventData eventData)
 	{
-		if (eventData.pointerDrag.TryGetComponent(out Draggable d) && acceptedIDs.Contains(d.ID))
+		if (!heldDraggable && eventData.pointerDrag.TryGetComponent(out Draggable d) && acceptedIDs.Contains(d.ID))
 		{
 			d.SetSnapPosition(transform.localPosition);
-
-			if (heldDraggable && heldDraggable != d)
-			{
-				heldDraggable.ResetSnapping();
-				heldDraggable.ResetPosition();
-			}
-
 			heldDraggable = d;
-			complete = true;
+			Complete = true;
 		}
+	}
+
+	public void ResetObject()
+	{
+		heldDraggable = null;
+		Complete = false;
 	}
 }
