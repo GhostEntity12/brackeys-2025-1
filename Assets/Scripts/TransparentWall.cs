@@ -16,7 +16,7 @@ public class TransparentWall : MonoBehaviour
 			isTransparent = value;
 			if (isTransparent)
 			{
-				LeanTween.color(gameObject, new(m.color.r, m.color.g, m.color.b, 0.1f), 0.1f);
+				LeanTween.color(gameObject, new(m.color.r, m.color.g, m.color.b, 0.5f), 0.1f);
 			}
 			else
 			{

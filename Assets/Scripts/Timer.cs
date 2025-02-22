@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
 	private float timerLength;
 	private float timeRemaining;
 	private RectTransform rectTransform;
+	private string failMessage;
 
 	[SerializeField] Image timerFront;
 	[SerializeField] Gradient colorRange;
@@ -33,12 +34,14 @@ public class Timer : MonoBehaviour
 		{
 			// Failed
 			Failed = true;
+			GameManager.Instance.OnGameOver(failMessage);
 			return;
 		}
 	}
 
-	public void Setup(float time, Transform location)
+	public void Setup(float time, Transform location, string failMessage)
 	{
+		this.failMessage = failMessage;
 		timerLength = time;
 		rectTransform.position = Camera.main.WorldToScreenPoint(location.position) + (Vector3.up * 40);
 	}
