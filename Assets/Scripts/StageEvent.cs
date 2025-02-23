@@ -12,6 +12,7 @@ public class StageEvent : MonoBehaviour
 	[SerializeField] private CanvasGroup popupCanvas;
 	[SerializeField] private RectTransform popup;
 	[SerializeField] private List<GameObject> itemsToReset;
+	[SerializeField] private string failMessage;
 
 	public bool InProgress { get; private set; } = false;
 	public Timer Timer { get; private set; }
@@ -25,7 +26,7 @@ public class StageEvent : MonoBehaviour
 			InteractPosition = hit.position;
 		}
 		Timer = Instantiate(GameManager.Instance.TimerPrefab, GameManager.Instance.EventCanvas.transform);
-		Timer.Setup(timerLength, transform);
+		Timer.Setup(timerLength, transform, failMessage);
 
 		conditionList = transform.GetComponentsInChildren<IStageEventCondition>().ToList();
 
