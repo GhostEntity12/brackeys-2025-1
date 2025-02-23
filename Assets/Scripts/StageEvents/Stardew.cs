@@ -1,23 +1,27 @@
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
+using UnityEngine.UI;
 
 public class Stardew : MonoBehaviour, IStageEventCondition, IResettable
 {
 	enum MoveDir { xPos, yPos, xNeg, yNeg }
-	Vector3 startPos;
 	float timer = 0;
-	float timeRequired = 5f;
+	float maxDelta;
+	float paddedDelta;
 
 	public bool Complete { get; set; }
 
 	[SerializeField] RectTransform bobber;
 	[SerializeField] RectTransform fish;
+	[SerializeField] RectTransform maxRange;
+	[SerializeField] Image progress;
+	[SerializeField] float timeRequired = 5f;
 	[SerializeField] float moveSpeed = 20f;
-	[SerializeField] float matchSensitivity = 10f;
-	[SerializeField] MoveDir moveDir = MoveDir.yNeg;
+	[SerializeField] bool movesUp = true;
+
 	private void Awake()
 	{
-		startPos = bobber.localPosition;
+		maxDelta = (movesUp ? maxRange.sizeDelta.y : maxRange.sizeDelta.x) / 2;
+		paddedDelta = maxDelta - ((movesUp? fish.sizeDelta.y : fish.sizeDelta.x) / 2);
 	}
 
 	private void Update()
@@ -28,28 +32,19 @@ public class Stardew : MonoBehaviour, IStageEventCondition, IResettable
 			float moveAmount = moveSpeed * Time.deltaTime;
 			if (Input.GetMouseButton(0))
 			{
-				bobber.localPosition = moveDir switch
-				{
-					MoveDir.xPos => new(bobber.localPosition.x - moveAmount, bobber.localPosition.y),
-					MoveDir.yPos => new(bobber.localPosition.x, bobber.localPosition.y - moveAmount),
-					MoveDir.xNeg => new(bobber.localPosition.x + moveAmount, bobber.localPosition.y),
-					MoveDir.yNeg => new(bobber.localPosition.x, bobber.localPosition.y + moveAmount),
-					_ => throw new System.NotImplementedException()
-				};
+				bobber.localPosition = movesUp
+					? new(bobber.localPosition.x, Mathf.Clamp(bobber.localPosition.y, -maxDelta, maxDelta) + moveAmount)
+					: new(Mathf.Clamp(bobber.localPosition.x, -maxDelta, maxDelta) + moveAmount, bobber.localPosition.y);
 			}
 			else
 			{
-				bobber.localPosition = moveDir switch
-				{
-					MoveDir.xPos => new(bobber.localPosition.x + moveAmount, bobber.localPosition.y),
-					MoveDir.yPos => new(bobber.localPosition.x, bobber.localPosition.y + moveAmount),
-					MoveDir.xNeg => new(bobber.localPosition.x - moveAmount, bobber.localPosition.y),
-					MoveDir.yNeg => new(bobber.localPosition.x, bobber.localPosition.y - moveAmount),
-					_ => throw new System.NotImplementedException()
-				};
+				bobber.localPosition = movesUp
+					? new(bobber.localPosition.x, Mathf.Clamp(bobber.localPosition.y, -maxDelta, maxDelta) - moveAmount)
+					: new(Mathf.Clamp(bobber.localPosition.x, -maxDelta, maxDelta) - moveAmount, bobber.localPosition.y);
 			}
 
-			if (Mathf.Abs(Vector3.Distance(fish.anchoredPosition, bobber.anchoredPosition)) < (moveDir == MoveDir.xPos || moveDir == MoveDir.xNeg ? fish.sizeDelta.x : fish.sizeDelta.y) / 2)
+			bool inRange = Mathf.Abs(Vector3.Distance(fish.anchoredPosition, bobber.anchoredPosition)) < (movesUp ? fish.sizeDelta.y : fish.sizeDelta.x) / 2;
+			if (inRange)
 			{
 				timer += Time.deltaTime;
 			}
@@ -58,6 +53,7 @@ public class Stardew : MonoBehaviour, IStageEventCondition, IResettable
 				timer -= Time.deltaTime;
 			}
 			timer = Mathf.Clamp(timer, 0f, timeRequired);
+			progress.fillAmount = timer / timeRequired;
 
 			if (timer == timeRequired)
 			{
@@ -69,6 +65,8 @@ public class Stardew : MonoBehaviour, IStageEventCondition, IResettable
 	void IResettable.ResetObject()
 	{
 		Complete = false;
-		bobber.localPosition = startPos;
+		bobber.localPosition = movesUp ? new(bobber.localPosition.x, -maxDelta) : new(-maxDelta, bobber.localPosition.y);
+		fish.localPosition = movesUp ? new(fish.localPosition.x, Random.Range(-paddedDelta, paddedDelta)) : new(Random.Range(-paddedDelta, paddedDelta), fish.localPosition.y);
+		timer = 0f;
 	}
 }

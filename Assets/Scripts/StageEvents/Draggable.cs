@@ -8,7 +8,9 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 	private Image sprite;
 	private Vector3 snapPosition;
 	private Vector3 initialPosition;
+	private Vector2 deltaBounds;
 
+	[SerializeField] RectTransform bounds;
 	[SerializeField] bool lockX = false;
 	[SerializeField] bool lockY = false;
 	[SerializeField] bool snapToPosition = false;
@@ -21,6 +23,7 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 		sprite = GetComponent<Image>();
 		snapPosition = transform.localPosition;
 		initialPosition = transform.localPosition;
+		deltaBounds = bounds.sizeDelta / 2;
 	}
 
 	public void OnBeginDrag(PointerEventData eventData)
@@ -41,6 +44,11 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 		else
 		{
 			transform.position = eventData.position;
+		}
+
+		if (bounds)
+		{
+			transform.localPosition = new(Mathf.Clamp(transform.localPosition.x, -deltaBounds.x, deltaBounds.x), Mathf.Clamp(transform.localPosition.y, -deltaBounds.y, deltaBounds.y));
 		}
 	}
 

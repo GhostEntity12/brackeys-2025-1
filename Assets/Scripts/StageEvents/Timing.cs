@@ -6,8 +6,10 @@ public class Timing : MonoBehaviour, IStageEventCondition, IResettable
 	private bool movingForward = true;
 	private bool active = false;
 	private float delta = 0f;
-
-	float maxDistance;
+	private float maxDistance;
+	private int hits;
+	
+	[SerializeField] private int requiredHits = 1;
 	[SerializeField] RectTransform maxRange;
 	[SerializeField] RectTransform safeZone;
 	[SerializeField] RectTransform bouncer;
@@ -20,6 +22,7 @@ public class Timing : MonoBehaviour, IStageEventCondition, IResettable
 	{
 		Complete = false;
 		active = true;
+		hits = 0;
 		maxDistance = (movingX ? maxRange.sizeDelta.x : maxRange.sizeDelta.y) / 2;
 		bouncer.anchoredPosition = movingX
 			? new(Random.Range(-maxDistance, maxDistance), bouncer.anchoredPosition.y)
@@ -49,7 +52,12 @@ public class Timing : MonoBehaviour, IStageEventCondition, IResettable
 
 			if (Input.GetMouseButtonDown(0) && Mathf.Abs(Vector3.Distance(safeZone.anchoredPosition, bouncer.anchoredPosition)) < (movingX ? safeZone.sizeDelta.x : safeZone.sizeDelta.y) / 2) 
 			{
-				Complete = true;
+				hits++;
+
+				if (hits >= requiredHits)
+				{
+					Complete = true;
+				}
 			}
 		}
 	}
