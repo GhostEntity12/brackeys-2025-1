@@ -14,7 +14,7 @@ public class Holdable : MonoBehaviour, IStageEventCondition, IResettable
 	[SerializeField] MoveDir moveDir = MoveDir.yNeg;
 	private void Awake()
 	{
-		startPos = movingObject.localPosition;
+		startPos = movingObject.anchoredPosition;
 	}
 
 	private void Update()
@@ -48,12 +48,14 @@ public class Holdable : MonoBehaviour, IStageEventCondition, IResettable
 					_ => throw new System.NotImplementedException()
 				};
 			}
+			// TODO - fix for horizontal
+			movingObject.anchoredPosition = new(movingObject.anchoredPosition.x, Mathf.Clamp(movingObject.anchoredPosition.y, 10, 250));
 		}
 	}
 
 	void IResettable.ResetObject()
 	{
 		Complete = false;
-		movingObject.localPosition = startPos;
+		movingObject.anchoredPosition = startPos;
 	}
 }

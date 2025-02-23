@@ -30,6 +30,7 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] AudioSource effectSource;
 	[SerializeField] AudioClip loseAudio;
 	[SerializeField] AudioClip winAudio;
+	[SerializeField] AudioClip winAudio2;
 
 	[field: SerializeField, Space(10f)] public Canvas EventCanvas { get; private set; }
 	[field: SerializeField] public Timer TimerPrefab { get; private set; }
@@ -115,6 +116,7 @@ public class GameManager : Singleton<GameManager>
 		gameOver = true;
 
 		effectSource.PlayOneShot(winAudio, 0.7f);
+		effectSource.PlayOneShot(winAudio2, 0.7f);
 		LeanTween.moveY(gameWinScreen, 0, 1f).setEaseOutCubic();
 
 	}
