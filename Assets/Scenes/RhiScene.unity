@@ -1390,6 +1390,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1743509688083055122, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 198.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2192148360071079090, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1474,17 +1478,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bubble
       objectReference: {fileID: 0}
+    - target: {fileID: 3881605910044448383, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881605910044448383, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 3881605910044448383, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -396.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6595504511871563811, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -183.8
       objectReference: {fileID: 0}
     - target: {fileID: 8144499557143758565, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
       propertyPath: m_Name
@@ -2366,9 +2390,9 @@ MonoBehaviour:
   act1End: 78
   act2End: 185
   act3End: 282
-  spawnTimerRangeAct1: {x: 15, y: 20}
-  spawnTimerRangeAct2: {x: 12, y: 15}
-  spawnTimerRangeAct3: {x: 8, y: 10}
+  spawnTimerRangeAct1: {x: 8, y: 10}
+  spawnTimerRangeAct2: {x: 6, y: 7}
+  spawnTimerRangeAct3: {x: 4, y: 5}
   gameWinScreen: {fileID: 755898013}
   gameOverScreen: {fileID: 755898014}
   gameOverInfo: {fileID: 755898015}
@@ -6943,6 +6967,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8339895396894331545, guid: 6b44132bbb896604da55db9e1132698a, type: 3}
+      propertyPath: timerLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8684169793060944842, guid: 6b44132bbb896604da55db9e1132698a, type: 3}
       propertyPath: m_Size.x
       value: 4.63
@@ -6980,6 +7008,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 191223738947954275, guid: 38c104d0cc6a2f745b0c120a605524bb, type: 3}
+      propertyPath: timerLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 452717405567360561, guid: 38c104d0cc6a2f745b0c120a605524bb, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -7109,6 +7141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1143121174682909962, guid: 7a79c3c8297428246b7973786a1a0868, type: 3}
+      propertyPath: timerLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2253135977522567732, guid: 7a79c3c8297428246b7973786a1a0868, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.01
@@ -7258,6 +7294,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.11625445
       objectReference: {fileID: 0}
+    - target: {fileID: 7380155715280426055, guid: e18a61f0756ef6745a103b7c9b35a1b2, type: 3}
+      propertyPath: timerLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8020794161420007054, guid: e18a61f0756ef6745a103b7c9b35a1b2, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -614
@@ -7391,6 +7431,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c1093f3ef54d83e4db8c43427a8d67b0, type: 3}
+    - target: {fileID: 5783619254846758454, guid: e9cceaedf766e25498d604e231a6d792, type: 3}
+      propertyPath: timerLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5859522408657915314, guid: e9cceaedf766e25498d604e231a6d792, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.06
@@ -7447,6 +7491,10 @@ PrefabInstance:
     - target: {fileID: 900628796276221585, guid: 01813288ae97cd648af95b62f07a37d8, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2440600531149351295, guid: 01813288ae97cd648af95b62f07a37d8, type: 3}
+      propertyPath: timerLength
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5128337664354565390, guid: 01813288ae97cd648af95b62f07a37d8, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7613,6 +7661,10 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.96
       objectReference: {fileID: 0}
+    - target: {fileID: 6450880901316273261, guid: 6faa52b68272ae04fa90947d3b2894c0, type: 3}
+      propertyPath: timerLength
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7164569169401293374, guid: 6faa52b68272ae04fa90947d3b2894c0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -7645,6 +7697,10 @@ PrefabInstance:
     - target: {fileID: 889739893037770588, guid: 075b4147c27ff394488d3cdbcf6c99cb, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055171096700378246, guid: 075b4147c27ff394488d3cdbcf6c99cb, type: 3}
+      propertyPath: timerLength
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2246941399233782025, guid: 075b4147c27ff394488d3cdbcf6c99cb, type: 3}
       propertyPath: m_Size.x
