@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -35,6 +36,8 @@ public class GameManager : Singleton<GameManager>
 	[field: SerializeField, Space(10f)] public Canvas EventCanvas { get; private set; }
 	[field: SerializeField] public Timer TimerPrefab { get; private set; }
 	[field: SerializeField] public Player Player { get; private set; }
+	[SerializeField] RectTransform actProgress;
+	[SerializeField] RectTransform actProgressMarker;
 
 	private void Start()
 	{
@@ -60,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 		{
 			SetAct(2);
 		}
-
+		actProgressMarker.anchoredPosition = new(gameTimer / act3End * actProgress.sizeDelta.x, 0);
 		spawnTimerCountdown -= Time.deltaTime;
 
 		if (spawnTimerCountdown > 0) return;
@@ -119,5 +122,14 @@ public class GameManager : Singleton<GameManager>
 		effectSource.PlayOneShot(winAudio2, 0.7f);
 		LeanTween.moveY(gameWinScreen, 0, 1f).setEaseOutCubic();
 
+	}
+
+	public void ToMenu()
+	{
+		SceneManager.LoadScene(0);
+	}
+	public void Restart()
+	{
+		SceneManager.LoadScene(1);
 	}
 }
