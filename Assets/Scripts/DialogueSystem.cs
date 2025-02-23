@@ -30,7 +30,7 @@ public class DialogueSystem : MonoBehaviour
 	[SerializeField] TextMeshProUGUI dialogueLine;
 	[SerializeField] RectTransform speechBubble;
 
-	float timer;
+	float timer = 8;
 	bool lineActive = false;
 
 	void Update()
@@ -62,6 +62,10 @@ public class DialogueSystem : MonoBehaviour
 		while (recentLineIndexes.Contains(index))
 		{
 			index++;
+			if (index == lines.Length)
+			{
+				index = 0;
+			}
 		}
 		recentLineIndexes.Add(index);
 		if (recentLineIndexes.Count > 5)

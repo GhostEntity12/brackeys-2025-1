@@ -5,24 +5,33 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-	private float spawnTimerCountdown;
+	private float spawnTimerCountdown = 5;
 	private readonly List<StageEvent> StageEventList = new();
 	private bool gameOver;
 	private float gameTimer;
 	private int act = 1;
 	private Vector2 spawnTimerRange = new(10, 12);
 
+	[Header("Acts")]
 	[SerializeField] private float act1End;
 	[SerializeField] private float act2End;
 	[SerializeField] private float act3End;
 	[SerializeField] private Vector2 spawnTimerRangeAct1 = new(15, 20);
 	[SerializeField] private Vector2 spawnTimerRangeAct2 = new(12, 15);
 	[SerializeField] private Vector2 spawnTimerRangeAct3 = new(8, 10);
+
+	[Header("Game End")]
 	[SerializeField] RectTransform gameWinScreen;
 	[SerializeField] RectTransform gameOverScreen;
 	[SerializeField] TextMeshProUGUI gameOverInfo;
 
-	[field: SerializeField] public Canvas EventCanvas { get; private set; }
+	[Header("Audio")]
+	[SerializeField] AudioSource musicSource;
+	[SerializeField] AudioSource effectSource;
+	[SerializeField] AudioClip loseAudio;
+	[SerializeField] AudioClip winAudio;
+
+	[field: SerializeField, Space(10f)] public Canvas EventCanvas { get; private set; }
 	[field: SerializeField] public Timer TimerPrefab { get; private set; }
 	[field: SerializeField] public Player Player { get; private set; }
 
@@ -92,6 +101,9 @@ public class GameManager : Singleton<GameManager>
 	{
 		if (gameOver) return;
 		gameOver = true;
+
+		LeanTween.value(musicSource.volume, 0, 0.7f).setOnComplete(musicSource.Stop);
+		effectSource.PlayOneShot(loseAudio, 0.7f);
 		Debug.Log(failMessage);
 		LeanTween.moveY(gameOverScreen, 0, 1f).setEaseOutBounce();
 		gameOverInfo.text = $"You made it to Act {act} before {failMessage}.";
@@ -101,6 +113,8 @@ public class GameManager : Singleton<GameManager>
 	{
 		if (gameOver) return;
 		gameOver = true;
+
+		effectSource.PlayOneShot(winAudio, 0.7f);
 		LeanTween.moveY(gameWinScreen, 0, 1f).setEaseOutCubic();
 
 	}
