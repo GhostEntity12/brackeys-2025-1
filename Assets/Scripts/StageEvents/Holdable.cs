@@ -34,10 +34,10 @@ public class Holdable : MonoBehaviour, IStageEventCondition, IResettable
 					_ => throw new System.NotImplementedException()
 				};
 			}
-			else if (Input.GetMouseButtonUp(0) && Vector3.Distance(movingObject.position, matchObject.position) < matchSensitivity)
+			else if (Input.GetMouseButtonUp(0) && Vector3.Distance(movingObject.localPosition, matchObject.localPosition) < matchSensitivity)
 			{
 				Complete = true;
-				Debug.Log(Vector3.Distance(movingObject.position, matchObject.position) < matchSensitivity);
+				Debug.Log(Vector3.Distance(movingObject.localPosition, matchObject.localPosition));
 			}
 			else
 			{

@@ -11,7 +11,6 @@ public class TransparentWall : MonoBehaviour
 		set
 		{
 			if (isTransparent == value) return;
-			Debug.Log(value);
 
 			isTransparent = value;
 			if (isTransparent)
