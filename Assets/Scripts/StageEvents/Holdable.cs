@@ -4,7 +4,6 @@ public class Holdable : MonoBehaviour, IStageEventCondition, IResettable
 {
 	enum MoveDir { xPos, yPos, xNeg, yNeg }
 	Vector3 startPos;
-	float moveDist;
 
 	public bool Complete { get; set; }
 
@@ -37,7 +36,6 @@ public class Holdable : MonoBehaviour, IStageEventCondition, IResettable
 			else if (Input.GetMouseButtonUp(0) && Vector3.Distance(movingObject.localPosition, matchObject.localPosition) < matchSensitivity)
 			{
 				Complete = true;
-				Debug.Log(Vector3.Distance(movingObject.localPosition, matchObject.localPosition));
 			}
 			else
 			{

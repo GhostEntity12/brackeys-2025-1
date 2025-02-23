@@ -23,7 +23,10 @@ public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 		sprite = GetComponent<Image>();
 		snapPosition = transform.localPosition;
 		initialPosition = transform.localPosition;
-		deltaBounds = bounds.sizeDelta / 2;
+		if (bounds)
+		{
+			deltaBounds = bounds.sizeDelta / 2;
+		}
 	}
 
 	public void OnBeginDrag(PointerEventData eventData)

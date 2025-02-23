@@ -19,7 +19,6 @@ public class Clickable : MonoBehaviour, IStageEventCondition, IResettable
 		clicks++;
 		if (sprites.Count > 0)
 		{
-			Debug.Log(Mathf.Min(clicks, sprites.Count));
 			image.sprite = sprites[Mathf.Min(clicks, sprites.Count - 1)];
 		}
 

@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3441ae9a52d9f4d4e87b1dab22c28afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounds: {fileID: 0}
   lockX: 1
   lockY: 0
   snapToPosition: 1
@@ -372,7 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceptedIDs:
-  - medBox
+  - slider
 --- !u!1 &4212046027132679254
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,3 +702,4 @@ MonoBehaviour:
   itemsToReset:
   - {fileID: 2267802151871747564}
   - {fileID: 2259293568712210582}
+  failMessage: 
