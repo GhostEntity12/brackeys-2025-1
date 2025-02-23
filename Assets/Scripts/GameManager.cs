@@ -30,7 +30,6 @@ public class GameManager : Singleton<GameManager>
 	{
 		// Get all StageEvents in the scene
 		StageEventList.AddRange(FindObjectsByType<StageEvent>(FindObjectsSortMode.None));
-		Debug.Log(StageEventList.Count);
 		SetAct(1);
 	}
 
@@ -95,7 +94,7 @@ public class GameManager : Singleton<GameManager>
 		gameOver = true;
 		Debug.Log(failMessage);
 		LeanTween.moveY(gameOverScreen, 0, 1f).setEaseOutBounce();
-		gameOverInfo.text = $"You made it to Act {0} before {failMessage}.";
+		gameOverInfo.text = $"You made it to Act {act} before {failMessage}.";
 	}
 
 	public void OnGameWin()
