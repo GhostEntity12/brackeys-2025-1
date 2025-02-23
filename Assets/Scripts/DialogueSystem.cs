@@ -29,9 +29,15 @@ public class DialogueSystem : MonoBehaviour
 	[SerializeField] Vector2 timeLineHeld = new(3, 6);
 	[SerializeField] TextMeshProUGUI dialogueLine;
 	[SerializeField] RectTransform speechBubble;
-
+	[SerializeField] RectTransform leftPersonArrow;
+	[SerializeField] RectTransform rightPersonArrow;
+	[SerializeField] Sprite leftPersonLowered, leftPersonRaised, rightPersonLowered, rightPersonRaised;
+	[SerializeField] SpriteRenderer leftPersonRenderer;
+	[SerializeField] SpriteRenderer rightPersonRenderer;
 	float timer = 8;
 	bool lineActive = false;
+
+	bool leftSelected;
 
 	void Update()
 	{
@@ -44,6 +50,14 @@ public class DialogueSystem : MonoBehaviour
 				LeanTween.scale(speechBubble, Vector3.zero, 0.4f).setEaseInBack();
 				timer = Random.Range(timeBetweenLines.x, timeBetweenLines.y);
 				lineActive = false;
+				if (leftSelected)
+				{
+					leftPersonRenderer.sprite = leftPersonLowered;
+				}
+				else
+				{
+					rightPersonRenderer.sprite = rightPersonLowered;
+				}
 			}
 			else
 			{
@@ -52,6 +66,19 @@ public class DialogueSystem : MonoBehaviour
 				dialogueLine.text = lines[GetNewDialogueIndex()];
 				timer = Random.Range(timeLineHeld.x, timeLineHeld.y);
 				lineActive = true;
+				leftSelected = Random.value > 0.5;
+				if (leftSelected)
+				{
+					leftPersonArrow.gameObject.SetActive(true);
+					rightPersonArrow.gameObject.SetActive(false);
+					leftPersonRenderer.sprite = leftPersonRaised;
+				}
+				else
+				{
+					leftPersonArrow.gameObject.SetActive(false);
+					rightPersonArrow.gameObject.SetActive(true);
+					rightPersonRenderer.sprite = rightPersonRaised;
+				}
 			}
 		}
 	}

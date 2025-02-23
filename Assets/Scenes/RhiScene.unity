@@ -519,6 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83a58f8cbeec5f43a850541f0c72955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &319047600 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6595504511871563811, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+  m_PrefabInstance: {fileID: 563632122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &328121035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,14 +1470,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2973274397202170976, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_Name
+      value: Bubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4431896392611455176, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8144499557143758565, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8144499557143758565, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: leftPersonArrow
+      value: 
+      objectReference: {fileID: 319047600}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: leftPersonRaised
+      value: 
+      objectReference: {fileID: 21300000, guid: c8012b457a555914cb1626b6c949357e, type: 3}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: rightPersonArrow
+      value: 
+      objectReference: {fileID: 1033289039}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: leftPersonLowered
+      value: 
+      objectReference: {fileID: 21300000, guid: 8feb23b438c279148aa232d34ad61792, type: 3}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: rightPersonRaised
+      value: 
+      objectReference: {fileID: 21300000, guid: cca0da48140761544b271e720014589b, type: 3}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: leftPersonRenderer
+      value: 
+      objectReference: {fileID: 1838316189}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: rightPersonLowered
+      value: 
+      objectReference: {fileID: 21300000, guid: ece9e16d589431a46992fd3195f6edc4, type: 3}
+    - target: {fileID: 8731785671013899258, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+      propertyPath: rightPersonRenderer
+      value: 
+      objectReference: {fileID: 696804455}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3465,6 +3514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83a58f8cbeec5f43a850541f0c72955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1033289039 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1743509688083055122, guid: 21774f71c3e477d4781bdff42218f67e, type: 3}
+  m_PrefabInstance: {fileID: 563632122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1033897826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7029948723529949830, guid: 289ab48d269761e4989464f9f1c0d05c, type: 3}
